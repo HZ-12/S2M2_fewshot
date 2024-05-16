@@ -32,11 +32,11 @@ class TransformLoader:
         else:
             return method()
 
-    def get_composed_transform(self, aug = False):
+    def get_composed_transform(self, aug = True):
         if aug:
             transform_list = ['RandomSizedCrop', 'ImageJitter', 'RandomHorizontalFlip', 'ToTensor', 'Normalize']
         else:
-            transform_list = ['Scale','CenterCrop', 'ToTensor', 'Normalize']
+            transform_list = ['Resize','CenterCrop', 'ToTensor', 'Normalize']
 
         transform_funcs = [ self.parse_transform(x) for x in transform_list]
         transform = transforms.Compose(transform_funcs)
